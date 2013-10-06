@@ -2,16 +2,29 @@ let s:root_path = exists('g:reveal_root_path')? g:reveal_root_path : $HOME.'/rev
 let s:root_path = s:root_path =~ '\/$'? s:root_path : s:root_path.'/'
 let s:reveal_file_name = exists('g:reveal_file_name')? g:reveal_file_name : 'test.html'
 let s:tempalte_path = expand('<sfile>:p:h').'/../template/'
-let s:section_head = ['<script type="text/template">']
-let s:section_tail = ['</script>', '</section>']
 let s:default_config = {
-            \'title':'title',
+            \'controls': 'true',
+            \'progress': 'true',
+            \'history': 'false',
+            \'keyboard': 'true',
+            \'touch': 'true',
+            \'center': 'true',
+            \'loop': 'false',
+            \'rtl': 'false',
+            \'mouseWheel': 'false',
+            \'margin': '0.1',
+            \'minScale': '0.2',
+            \'maxScale': '1.0',
+            \'autoSlide': '0',
+            \'width': '960',
+            \'height': '900',
+            \'theme': '"default"',
+            \'transition': '"default"',
+            \'transitionSpeed': '"default"',
+            \'backgroundTransition': '"default"',
+            \'title': 'title',
             \'author':'"author"',
-            \'description':'"description"',
-            \'theme':'"default"',
-            \'transition':'"default"',
-            \'height':'900',
-            \'width':'960'}
+            \'description':'"description"'}
 
 for [key,value] in items(s:default_config)
     if exists('g:reveal_default_config["'.key.'"]')
@@ -35,6 +48,7 @@ function! s:Md2Reveal()
     for [mkey, mvalue] in items(Metadata)
         execute '%s/{%\s*'.mkey.'\s*%}/'.mvalue.'/g'
     endfor
+    1
     write!
 endfunction
 
@@ -44,10 +58,11 @@ function! s:GetContent()
     while 1
         let line1 = search('^\s*<!--\s*sec.*-->\s*$', 'eW')
         let line2 = search('^\s*<!--\s*sec.*-->\s*$', 'nW')
-        let secno1 = matchstr(getline(line1), 'sec\s*\zs\d\+')
-        let secno2 = matchstr(getline(line2), 'sec\s*\zs\d\+')
-        let subsecno = matchstr(getline(line1), 'sec\s*\d\+\.\zs\d\+')
-        let opt = matchstr(getline(line1), 'sec\s*[.0-9]*\s*\zs.*\ze-->')
+        let secno1 = matchstr(getline(line1), 'secp\=\s*\zs\d\+')
+        let secno2 = matchstr(getline(line2), 'secp\=\s*\zs\d\+')
+        let subsecno = matchstr(getline(line1), 'secp\=\s*\d\+\.\zs\d\+')
+        let sectype = matchstr(getline(line1), 'sec\zs.')
+        let opt = matchstr(getline(line1), 'secp\=\s*[.0-9]*\s*\zs.*\ze-->')
         let opt = substitute(opt, 'bg="', 'data-background="', 'g')
         let opt = substitute(opt, 'tr="', 'data-transition="', 'g')
         let opt = substitute(opt, 'bgtr="', 'data-background-transition="', 'g')
@@ -55,15 +70,22 @@ function! s:GetContent()
         let opt = substitute(opt, 'bgsz="', 'data-background-size="', 'g')
         let endlineno = line2? line2-1: line('$')
         if line1
-            let newhead = ['<section data-markdown '.opt.'>']
-            let newtail = []
+            let sechead = ['<section data-markdown '.opt.'>']
+            let sectail = ['</section>']
+            let subhead = ['<script type="text/template">']
+            let subtail = ['</script>']
+            if sectype == 'p'
+                let sechead = ['<section '.opt.'>']
+                let subhead = []
+                let subtail = []
+            endif
             if subsecno != ''
                 if subsecno == '1'
-                    let newhead = ['<section>', '<section data-markdown '.opt.'>']
+                    let sechead = ['<section>']+sechead
                 endif
-                let newtail = (secno1 != secno2)? ['</section>']: []
+                let sectail = (secno1 != secno2)? sectail+sectail : sectail
             endif
-            let content += newhead+s:section_head+getline(line('.')+1, endlineno)+s:section_tail+newtail
+            let content += sechead+subhead+getline(line('.')+1, endlineno)+subtail+sectail
         endif
         if line2 == 0
             return content
