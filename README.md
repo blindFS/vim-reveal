@@ -12,12 +12,12 @@ vim plugin that use markdown and reveal.js to generate presentations.
 ### Vim configuration
 
 ```vim
-let g:reveal_root_path = 'your-reveal.js-path' ; '$HOME/reveal.js/' will be used if not specified.
-let g:reveal_file_name = 'name.html' ; 'test.html' will be used if not specified.
+let g:reveal_root_path = 'your-reveal.js-path' " '$HOME/reveal.js/' will be used if not specified.
+let g:reveal_file_name = 'name.html'           " 'test.html' will be used if not specified.
 let g:reveal_default_config = {
     \'key1': 'value1'
     \'key2': 'value2'
-    \ ...} ; Default options.
+    \ ...}                                     " Default options for reveal.js.
 ```
 
 ### Syntax

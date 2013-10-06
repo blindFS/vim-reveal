@@ -26,11 +26,11 @@ let s:default_config = {
             \'author':'"author"',
             \'description':'"description"'}
 
-for [key,value] in items(s:default_config)
-    if exists('g:reveal_default_config["'.key.'"]')
-        let s:default_config[key] = g:reveal_default_config[key]
-    endif
-endfor
+if exists('g:reveal_default_config')
+    for [key,value] in items(g:reveal_default_config)
+        let s:default_config[key] = value
+    endfor
+endif
 
 function! s:Md2Reveal()
     let content = s:GetContent()
@@ -43,11 +43,12 @@ function! s:Md2Reveal()
     execute 'edit '.s:root_path.s:reveal_file_name
     normal ggdG
     execute '0read '.s:tempalte_path.'head'
-    call append('$', content)
+    let endofhead = line('$')
     execute '$read '.s:tempalte_path.'tail'
     for [mkey, mvalue] in items(Metadata)
         execute '%s/{%\s*'.mkey.'\s*%}/'.mvalue.'/g'
     endfor
+    call append(endofhead, content)
     1
     write!
 endfunction
@@ -63,11 +64,11 @@ function! s:GetContent()
         let subsecno = matchstr(getline(line1), 'secp\=\s*\d\+\.\zs\d\+')
         let sectype = matchstr(getline(line1), 'sec\zs.')
         let opt = matchstr(getline(line1), 'secp\=\s*[.0-9]*\s*\zs.*\ze-->')
-        let opt = substitute(opt, 'bg="', 'data-background="', 'g')
-        let opt = substitute(opt, 'tr="', 'data-transition="', 'g')
-        let opt = substitute(opt, 'bgtr="', 'data-background-transition="', 'g')
-        let opt = substitute(opt, 'bgrp="', 'data-background-repeat="', 'g')
-        let opt = substitute(opt, 'bgsz="', 'data-background-size="', 'g')
+        let opt = substitute(opt, 'bgtr=', 'data-background-transition=', 'g')
+        let opt = substitute(opt, 'bgrp=', 'data-background-repeat=', 'g')
+        let opt = substitute(opt, 'bgsz=', 'data-background-size=', 'g')
+        let opt = substitute(opt, 'bg=', 'data-background=', 'g')
+        let opt = substitute(opt, 'tr=', 'data-transition=', 'g')
         let endlineno = line2? line2-1: line('$')
         if line1
             let sechead = ['<section data-markdown '.opt.'>']
@@ -79,11 +80,12 @@ function! s:GetContent()
                 let subhead = []
                 let subtail = []
             endif
-            if subsecno != ''
-                if subsecno == '1'
+            if secno1 == secno2
+                if subsecno =~ '^1\=$'
                     let sechead = ['<section>']+sechead
                 endif
-                let sectail = (secno1 != secno2)? sectail+sectail : sectail
+            elseif subsecno != ''
+                let sectail = sectail+sectail
             endif
             let content += sechead+subhead+getline(line('.')+1, endlineno)+subtail+sectail
         endif
