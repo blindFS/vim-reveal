@@ -29,6 +29,12 @@ let g:reveal_default_config = {
     \ ...}                                     " Default options for reveal.js.
 ```
 
+### Usage
+
+1. Edit your markdown file.
+2. _:RevealIt_  will help you open the generated html file.
+3. _:!Your-favorite-browser %_  will show the presentation in your browser.
+
 <!--sec3-->
 ### What it looks like?
 
