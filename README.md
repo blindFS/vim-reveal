@@ -41,5 +41,5 @@ And you need something to customize the reveal.js options.
 
 ### Generate the html file
 
-After finish editing something like [this](https://raw.github.com/farseer90718/vim-reveal/master/test/test.md).
-Use the `:RevealIt` command to generate the html file with the name of g:reveal_file_name in the g:reveal_root_path.
+After finish editing something like [this](https://raw.github.com/farseer90718/vim-reveal/master/test/vim-reveal.md).
+Use the `:RevealIt` command to generate the html file.And after you open the page in a browser,somthing like [this](http://farseer90718.github.io/vim-reveal/vim-reveal.html) will happen.
