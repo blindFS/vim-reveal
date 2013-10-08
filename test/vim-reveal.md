@@ -16,7 +16,7 @@
 
 ### Install & Tweak
 
-1. Use your favorite vim package managing plugin(such as vundle/pathegen/neobundle).
+1. Use your favorite vim package managing plugin(such as vundle/pathogen/neobundle).
 2. Clone [reveal.js](https://github.com/hakimel/reveal.js) somewhere.
 3. Add something like this to your vim configuration file.
 
@@ -28,6 +28,8 @@ let g:reveal_default_config = {
     \'key2': 'value2'
     \ ...}                                     " Default options for reveal.js.
 ```
+
+<br/><hr/>
 
 ### Usage
 
