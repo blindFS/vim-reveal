@@ -43,3 +43,7 @@ And you need something to customize the reveal.js options.
 
 After finish editing something like [this](https://raw.github.com/farseer90718/vim-reveal/master/test/vim-reveal.md).
 Use the `:RevealIt` command to generate the html file.And after you open the page in a browser,somthing like [this](http://farseer90718.github.io/vim-reveal/vim-reveal.html) will happen.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/farseer90718/vim-reveal/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
