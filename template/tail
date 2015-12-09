@@ -19,7 +19,7 @@
                 autoSlide: {% autoSlide %},
                 width: {% width %},
                 height: {% height %},
-                theme: {% theme %},
+                theme: '{% theme %}',
                 transition: {% transition %},
                 transitionSpeed: {% transitionSpeed %},
                 backgroundTransition: {% backgroundTransition %},
