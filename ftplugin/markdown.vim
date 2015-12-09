@@ -40,6 +40,7 @@ function! s:Md2Reveal()
             let Metadata[key] = value
         endif
     endfor
+    wincmd n
     execute 'edit '.s:root_path.Metadata['fname'].'.html'
     normal ggdG
     execute '0read '.s:tempalte_path.'head'
