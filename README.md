@@ -46,5 +46,5 @@ Use the `:RevealIt` command to generate the html file.
 
 It accepts several options:
 * `:RevealIt default`: open generated file
-* `:RevealIt new': open generated file in new window
+* `:RevealIt new`: open generated file in new window
 * `:RevealIt md`: stay in markdown file
