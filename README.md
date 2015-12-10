@@ -45,6 +45,7 @@ And you need something to customize the reveal.js options.
 Use the `:RevealIt` command to generate the html file.
 
 It accepts several options:
-* `:RevealIt default` open generated file
+* `:RevealIt default` open generated file (same as `:RevealIt`)
 * `:RevealIt new` open generated file in new window
 * `:RevealIt md` stay in markdown file
+
