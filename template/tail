@@ -20,9 +20,9 @@
                 width: {% width %},
                 height: {% height %},
                 theme: '{% theme %}',
-                transition: {% transition %},
-                transitionSpeed: {% transitionSpeed %},
-                backgroundTransition: {% backgroundTransition %},
+                transition: '{% transition %}',
+                transitionSpeed: '{% transitionSpeed %}',
+                backgroundTransition: '{% backgroundTransition %}',
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
                     { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
