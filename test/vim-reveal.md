@@ -1,4 +1,4 @@
-<!--Meta author:'Faseer He' theme:'night' title:vim-reveal-->
+<!--Meta author:'Faseer He' theme:night title:vim-reveal-->
 <!--sec1-->
 ## Vim-reveal
 
