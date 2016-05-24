@@ -90,6 +90,10 @@ if !exists('g:vim_reveal_loaded') || g:vim_reveal_loaded == 0
     endif
   endfunction
 
+  function! s:Trim(str)
+    return substitute(a:str, '^\s*\(.\{-}\)\s*$', '\1', '')
+  endfunc
+
   function! s:GetContent()
     let content = []
     1
@@ -124,7 +128,18 @@ if !exists('g:vim_reveal_loaded') || g:vim_reveal_loaded == 0
         elseif subsecno != ''
           let sectail = sectail+sectail
         endif
-        let content += sechead+subhead+getline(line('.')+1, endlineno)+subtail+sectail
+        let lines = getline(line('.')+1, endlineno)
+        let allEmpty = 1
+        for line in lines
+          if s:Trim(line) != ''
+            let allEmpty = 0
+          endif
+        endfor
+        if allEmpty
+          let content += sechead+subhead+['&nbsp;']+subtail+sectail
+        else
+          let content += sechead+subhead+lines+subtail+sectail
+        endif
       endif
       if line2 == 0
         return content
