@@ -117,7 +117,7 @@ if !exists('g:vim_reveal_loaded') || g:vim_reveal_loaded == 0
           let subhead = []
           let subtail = []
         endif
-        if secno1 == secno2
+        if secno1 == secno2 && secno1 != ''
           if subsecno =~ '^1\=$'
             let sechead = ['<section>']+sechead
           endif

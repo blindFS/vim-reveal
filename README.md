@@ -40,6 +40,21 @@ And you need something to customize the reveal.js options.
 <!--sec 3 bg='#123' tr='cube' bgtr='linear'-->
 ```
 
+Note: Sections do not actually need to be numbered, except to indicate nesting.  The following code will generate the same presentation.
+
+```
+<!--Meta key1:value1 key2:value2 [...]--> // Options,these lines should be in the head of the file.
+
+// The start of a markdown section.
+<!--sec-->
+// Secp means plain html section.In other words,markdown syntax is ignored(mainly for [MathJax](https://github.com/mathjax/mathjax)).
+<!--secp 2.1-->
+// The number after the decimal point means that this is a nested section.
+<!--sec 2.2-->
+// Section options.'bg' : 'background', 'tr' : 'transition', 'bgtr' : 'background-transition', 'bgrp' : 'background-repeat', 'bgsz' : 'background-size'.
+<!--sec bg='#123' tr='cube' bgtr='linear'-->
+```
+
 ### Generate the html file
 
 Use the `:RevealIt` command to generate the html file.
