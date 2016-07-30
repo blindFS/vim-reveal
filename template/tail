@@ -1,7 +1,7 @@
             </div>
         </div>
-        <script src="../lib/js/head.min.js"></script>
-        <script src="../js/reveal.js"></script>
+        <script src="{% revealWebPath %}lib/js/head.min.js"></script>
+        <script src="{% revealWebPath %}js/reveal.js"></script>
         <script>
             Reveal.initialize({
                 controls: {% controls %},
@@ -25,13 +25,13 @@
                 backgroundTransition: '{% backgroundTransition %}',
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
-                    { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                    { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: '../plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: '../plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: '../plugin/math/math.js', async: true }
+                    { src: '{% revealWebPath %}lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '{% revealWebPath %}plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '{% revealWebPath %}plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '{% revealWebPath %}plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '{% revealWebPath %}plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '{% revealWebPath %}plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '{% revealWebPath %}plugin/math/math.js', async: true }
                 ]
             });
         </script>
