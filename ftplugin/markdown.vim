@@ -79,7 +79,11 @@ if !exists('g:vim_reveal_loaded') || g:vim_reveal_loaded == 0
     let endofhead = line('$')
     execute '$read '.s:template_path.'tail'
     for [mkey, mvalue] in items(Metadata)
-      silent! execute '%s/{%\s*'.mkey.'\s*%}/'.mvalue.'/g'
+      if mkey == 'path'
+        let mvalue = expand(mvalue)
+      endif
+
+      silent! execute '%s@{%\s*'.mkey.'\s*%}@'.mvalue.'@g'
     endfor
     call append(endofhead, content)
     1
