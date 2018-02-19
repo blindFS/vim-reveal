@@ -1,7 +1,7 @@
             </div>
         </div>
-        <script src="{% path %}/lib/js/head.min.js"></script>
-        <script src="{% path %}/js/reveal.js"></script>
+        <script src="{% revealWebPath %}lib/js/head.min.js"></script>
+        <script src="{% revealWebPath %}js/reveal.js"></script>
         <script>
             Reveal.initialize({
                 controls: {% controls %},
@@ -25,13 +25,13 @@
                 backgroundTransition: '{% backgroundTransition %}',
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
-                    { src: '{% path %}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                    { src: '{% path %}/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '{% path %}/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '{% path %}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: '{% path %}/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: '{% path %}/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-                    { src: '{% path %}/plugin/math/math.js', async: true }
+                    { src: '{% revealWebPath %}lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '{% revealWebPath %}plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '{% revealWebPath %}plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '{% revealWebPath %}plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '{% revealWebPath %}plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '{% revealWebPath %}plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: '{% revealWebPath %}plugin/math/math.js', async: true }
                 ]
             });
         </script>
